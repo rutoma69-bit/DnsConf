@@ -13,6 +13,7 @@ on:
         options:
           - DNS
           - NextDNS-Config
+          - Phone
 
 jobs:
   build:
