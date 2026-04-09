@@ -4,11 +4,20 @@ on:
   schedule:
     - cron: '30 1 * * *' # 04:30 MSK (01:30 UTC)
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Choose environment'
+        required: true
+        default: 'DNS'
+        type: choice
+        options:
+          - DNS
+          - NextDNS-Config
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: DNS
+    environment: ${{ github.event.inputs.environment || 'DNS' }}
 
     env:
       DNS: ${{ vars.DNS }}
